@@ -7,7 +7,7 @@ import java.net.URL
 import org.json.JSONArray
 import org.json.JSONObject
 
-/** Talks to a site's existing /api/admin/* routes. Session cookie is kept in memory. */
+// Talks to the existing admin API routes of a site. The session cookie is kept in memory.
 object Api {
     init { if (CookieHandler.getDefault() == null) CookieHandler.setDefault(CookieManager()) }
 
@@ -25,7 +25,7 @@ object Api {
         return code to text
     }
 
-    /** Returns null on success, else an error message. */
+    // Returns null on success, else an error message.
     fun login(site: Site, user: String, pass: String): String? = try {
         val body = JSONObject().put("username", user).put("password", pass).toString()
         val (code, text) = call("${site.baseUrl}/api/admin/login", "POST", body)
